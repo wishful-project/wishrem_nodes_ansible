@@ -1,0 +1,62 @@
+---
+- name: Wishrem experiment deployment
+  hosts: harry
+  tasks:
+  - name: Copy code
+    synchronize:
+      src: ../controllers_dockers
+      dest: ~/wishrem
+      recursive: yes
+
+  - name: Start docker services
+    docker_service:
+      project_src: ~/wishrem/controllers_dockers
+      build: yes
+      state: present
+      restarted: true
+
+- name: Wishrem experiment deployment
+  hosts: nucs
+  tasks:
+  - name: Install packages
+    apt: name="{{ item }}" state=present
+    with_items:
+    - wget
+    - git
+    - python
+    - python-virtualenv
+    - python-dev
+    - python3-dev
+    - python3-pip
+    - rfkill
+    - tshark
+    - hostapd
+    - hostap-utils
+    - dnsmasq
+    become: yes
+
+  - name: Install pip packages
+    pip:
+      name: "{{ item }}"
+      executable: pip3
+      extra_args: -U
+      editable: no
+    with_items:
+    - "pyshark"
+    - "git+https://github.com/wishful-project/stream_pipe"
+    - "git+https://github.com/wishful-project/python-tc"
+    - "git+https://github.com/phaethon/scapy.git#egg=scapy-python3"
+    - "git+https://github.com/uniflex/uniflex"
+    - "git+https://github.com/uniflex/sbi"
+    - "git+https://github.com/uniflex/module_net_linux"
+    - "git+https://github.com/uniflex/module_wifi"
+    - "git+https://github.com/wishful-project/pyre"
+    - "git+https://github.com/uniflex/app_discovery_pyre"
+    - "git+https://github.com/wishful-project/wishrem_rem_events"
+    - "git+https://github.com/wishful-project/wishrem_wifi_flex"
+    become: yes
+  - name: Copy code
+    synchronize:
+      src: ../wifi_flex/node_app
+      dest: ~/wishrem
+      recursive: yes
