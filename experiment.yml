@@ -4,13 +4,13 @@
   tasks:
   - name: Copy code
     synchronize:
-      src: ../controllers_dockers
-      dest: ~/wishrem
+      src: ../wishrem_controllers_dockers
+      dest: ~/wishrem_controllers_dockers
       recursive: yes
 
   - name: Start docker services
     docker_service:
-      project_src: ~/wishrem/controllers_dockers
+      project_src: ~/wishrem_controllers_dockers
       build: yes
       state: present
       restarted: true
@@ -57,6 +57,6 @@
     become: yes
   - name: Copy code
     synchronize:
-      src: ../wifi_flex/node_app
-      dest: ~/wishrem
+      src: ../wishrem_wifi_flex/node_app
+      dest: ~/wishrem_wifi_flex
       recursive: yes
