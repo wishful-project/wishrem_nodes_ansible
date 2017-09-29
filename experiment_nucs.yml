@@ -43,7 +43,8 @@
   - name: Git clone wishrem_wifi_flex
     git:
       repo: "https://github.com/wishful-project/wishrem_wifi_flex.git"
-      dest: ~/wishrem_wifi_flex/
+      dest: ~/wishrem_wifi_flex
       version: master
-      accept_hostkey: true
+      clone: yes
+      update: yes
     become: yes
