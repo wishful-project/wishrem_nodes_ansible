@@ -38,9 +38,10 @@
     - "git+https://github.com/uniflex/app_discovery_pyre"
     - "git+https://github.com/wishful-project/wishrem_rem_events"
     - "git+https://github.com/wishful-project/wishrem_wifi_flex"
-
     become: yes
+    
   - name: Git clone wishrem_wifi_flex
-      git: 
-        repo='https://github.com/wishful-project/wishrem_wifi_flex.git'
-        dest=~/
+    git:
+      repo='https://github.com/wishful-project/wishrem_wifi_flex.git'
+      dest=~/
+    become: yes        
