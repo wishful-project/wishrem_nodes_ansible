@@ -40,8 +40,7 @@
     - "git+https://github.com/wishful-project/wishrem_wifi_flex"
 
     become: yes
-  - name: Copy code
-    synchronize:
-      src: ../wishrem_wifi_flex/node_app
-      dest: ~/wishrem_wifi_flex
-      recursive: yes
+  - name: Git clone wishrem_wifi_flex
+      git: >
+      repo=https://github.com/wishful-project/wishrem_wifi_flex.git
+      dest=~/
