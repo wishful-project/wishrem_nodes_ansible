@@ -43,5 +43,5 @@
   - name: Git clone wishrem_wifi_flex
     git:
       repo='https://github.com/wishful-project/wishrem_wifi_flex.git'
-      dest=~/
+      dest=~/wishrem_wifi_flex
     become: yes        
