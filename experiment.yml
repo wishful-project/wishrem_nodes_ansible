@@ -2,10 +2,14 @@
 - name: Wishrem experiment deployment
   hosts: harry
   tasks:
+  - name: Git clone wishrem_wifi_flex
+    git: repo=https://github.com/wishful-project/wishrem_controllers_dockers.git dest=/tmp/wishrem_controllers_dockers
+    become: yes
+    
   - name: Copy code
     synchronize:
-      src: ../wishrem_controllers_dockers
-      dest: ~/wishrem_controllers_dockers
+      src: /tmp/wishrem_controllers_dockers
+      dest: ~/
       recursive: yes
 
   - name: Start docker services
@@ -55,8 +59,13 @@
     - "git+https://github.com/wishful-project/wishrem_rem_events"
     - "git+https://github.com/wishful-project/wishrem_wifi_flex"
     become: yes
-  - name: Copy code
+
+  - name: Git clone wishrem_wifi_flex
+    git: repo=https://github.com/wishful-project/wishrem_wifi_flex.git dest=/tmp/wishrem_wifi_flex
+    become: yes
+    
+  - name: Copy node_app code
     synchronize:
-      src: ../wishrem_wifi_flex/node_app
-      dest: ~/wishrem_wifi_flex
+      src: /tmp/wishrem_wifi_flex/node_app
+      dest: ~/
       recursive: yes
