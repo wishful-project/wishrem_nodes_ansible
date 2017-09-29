@@ -43,3 +43,9 @@
   - name: Git clone wishrem_wifi_flex
     git: repo='https://github.com/wishful-project/wishrem_wifi_flex.git' dest=~/wishrem_wifi_flex
     become: yes
+    
+  - name: Copy node_app code
+    synchronize:
+      src: ../wishrem_wifi_flex/node_app
+      dest: ~/node_app
+      recursive: yes
