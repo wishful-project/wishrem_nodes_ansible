@@ -47,5 +47,5 @@
   - name: Copy node_app code
     synchronize:
       src: /tmp/wishrem_wifi_flex/node_app
-      dest: ~/node_app
+      dest: ~/
       recursive: yes
