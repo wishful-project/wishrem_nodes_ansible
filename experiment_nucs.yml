@@ -45,5 +45,4 @@
       repo='https://github.com/wishful-project/wishrem_wifi_flex.git'
       dest=~/wishrem_wifi_flex
       version="master"
-      accept_hostkey: true
     become: yes
