@@ -42,6 +42,6 @@
     become: yes
   - name: Copy code
     synchronize:
-      src: ../wifi_flex/node_app
-      dest: ~/wishrem
+      src: ../wishrem_wifi_flex/node_app
+      dest: ~/wishrem_wifi_flex
       recursive: yes
